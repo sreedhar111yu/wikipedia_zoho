@@ -1,0 +1,70 @@
+
+message = Map();
+if(arguments.length() > 0)
+{
+	query = arguments;
+	// Construct the search URL
+	search_url = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + query + "&format=json";
+	// Invoke the search URL
+	resp = invokeurl
+	[
+		url :search_url
+		type :GET
+	];
+	// Check if search results exist
+	if(resp.get("query") != null && resp.get("query").get("search").size() > 0)
+	{
+		searchResults = resp.get("query").get("search");
+		resultsList = List();
+		// Iterate over each search result
+		for each  item in searchResults
+		{
+			entry = Map();
+			title = item.get("title");
+			snippet = item.get("snippet");
+			pageId = item.get("pageid");
+			entry.put("title",title);
+			entry.put("description",snippet);
+			entry.put("url","https://en.wikipedia.org/?curid=" + pageId);
+			resultsList.add(entry);
+		}
+		// Format the response message with the search results
+		message.put("text","Here are the search results:\n");
+		// Append each result to the message text
+		for each  result in resultsList
+		{
+			message.put("text",message.get("text") + result.get("title") + ": " + result.get("url") + "\n");
+		}
+		// Add the first paragraph of the first result for context
+		firstResultTitle = searchResults.get(0).get("title").replaceAll(" ","_");
+		firstResultUrl = "https://en.wikipedia.org/wiki/" + firstResultTitle;
+		// Fetch the content of the first result page
+		contentResp = invokeurl
+		[
+			url :firstResultUrl
+			type :GET
+		];
+		// Extract and format the first paragraph
+		if(contentResp != null && contentResp.contains("<title>") && contentResp.contains("<p>"))
+		{
+			title_start = contentResp.indexOf("<title>") + 7;
+			title_end = contentResp.indexOf(" - Wikipedia</title>");
+			title = contentResp.substring(title_start,title_end);
+			paragraph_start = contentResp.indexOf("<p>");
+			paragraph_end = contentResp.indexOf("</p>",paragraph_start);
+			paragraph = contentResp.substring(paragraph_start + 3,paragraph_end);
+			paragraph_clean = paragraph.replaceAll("<.*?>","");
+			// Append the first paragraph to the message
+			message.put("text",message.get("text") + "\n\n**" + title + "**\n\n" + paragraph_clean + "\n\n[Read more on Wikipedia](" + firstResultUrl + ")");
+		}
+	}
+	else
+	{
+		message.put("text","No results found for: " + query);
+	}
+}
+else
+{
+	message.put("text","Please provide a search term!");
+}
+return message;

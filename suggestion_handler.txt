@@ -1,0 +1,51 @@
+
+// Initialize an empty list to store entries
+list = List();
+// Create the first entry
+entry = Map();
+entry.put("title","Welcome  👋");
+entry.put("description","Command suggestions are helpful when you have to choose from a list of entities!");
+// entry.put("imageurl","https://media3.giphy.com/media/Cmr1OMJ2FN0B2/giphy.gif");
+list.add(entry);
+// Create the second entry
+entry1 = Map();
+entry1.put("title","Please enter the full name of the article or refine your text for a more accurate Wikipedia search.");
+entry1.put("description","You can show up to a maximum of 50 command suggestions. 😲");
+// entry1.put("imageurl","https://media2.giphy.com/media/8uzVsRzOScAa4/giphy.gif");
+list.add(entry1);
+// Return the list of entries (First block ends here)
+return list;
+// Replace spaces with underscores in the query arguments
+// if (arguments.contains(" ")) {
+//     arguments = arguments.replaceAll(" ", "_");
+// }
+// // Construct the Wikipedia search URL
+// wiki_search_url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + arguments + "&limit=10&namespace=0&format=json";
+// // Fetch the Wikipedia search results
+// resp = invokeurl
+// [
+//     url : wiki_search_url
+//     type : GET
+// ];
+// // Extract relevant information from the response
+// suggestions = resp.get(1); // Get the array of suggested titles
+// // Initialize a new list for suggestions
+// list = List();
+// if (suggestions.isEmpty()) {
+//     // Add a suggestion message if no results are found
+//     entry = Map();
+//     entry.put("title", "No results found");
+//     entry.put("description", "Please enter the full name of the article or refine your search.");
+//     entry.put("imageurl", "");
+//     list.add(entry);
+// } else {
+//     for each title in suggestions {
+//         entry = Map();
+//         entry.put("title", title);
+//         entry.put("description", "");  // Optionally add a description if needed
+//         entry.put("imageurl", "");  // Optionally add an image URL if available
+//         list.add(entry);
+//     }
+// }
+// // Return the list of suggestions
+// return list;
