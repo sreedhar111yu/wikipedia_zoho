@@ -92,23 +92,18 @@ For queries or issues, contact:
 
 ---
 
-## Feedback
-Your feedback helps us improve! Submit your suggestions via the **Feedback Form** in the extension settings.
-
----
 
 ## Screenshots
-![Wikipedia Extension Search](screenshots/search_example.png)
-> *Figure: Searching for "Quantum Computing" in Zoho Cliq.*
+![Wikipedia](screenshots)
 
-![Wikipedia Extension Section Fetch](screenshots/section_example.png)
-> *Figure: Fetching specific sections of a Wikipedia article.*
+
+
 
 ---
 
 ## Video Guide
 Watch our video tutorial on YouTube for a step-by-step guide:  
-[![Watch on YouTube](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+[![Watch on YouTube](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=aYPzqH38cjY&t=55s)
 
 ---
 
